@@ -15,14 +15,12 @@ buttons.forEach((element) => {
      })
  
 // Operations
-const add = (a, b) => (parseFloat(a) + parseFloat(b)).toFixed(2);
-const subtract = (a, b) => (parseFloat(a) - parseFloat(b)).toFixed(2);
-const divide = (a, b) => (parseFloat(a) / parseFloat(b)).toFixed(2);
-const multiply = (a, b) => (parseFloat(a) * parseFloat(b)).toFixed(2);
+const add = (a, b) => parseFloat(a) + parseFloat(b);
+const subtract = (a, b) => parseFloat(a) - parseFloat(b);
+const divide = (a, b) => parseFloat(a) / parseFloat(b);
+const multiply = (a, b) => parseFloat(a) * parseFloat(b);
     
-
-// Calculate result and display output
-result.addEventListener("click", () => {
+function calculateResult () {
     if (input.innerHTML.includes("+")) {
         const output = input.innerHTML.split("+");
         input.innerHTML = add((output[0]), output[1]);
@@ -35,7 +33,8 @@ result.addEventListener("click", () => {
     }else if  (input.innerHTML.includes("x")) {
         const output = input.innerHTML.split("x");
         input.innerHTML = multiply((output[0]), output[1]);
-    }           
-})
-
+    }
+}
+// Calculate result and display output
+result.addEventListener("click", calculateResult);        
 clearInput.addEventListener("click", () => input.innerHTML = "Output");
