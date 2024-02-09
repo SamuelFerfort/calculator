@@ -4,7 +4,7 @@
 const input = document.querySelector(".input");
 const addButton = document.querySelector(".adding");
 const buttons = document.querySelectorAll("button");
-const result = document.querySelector(".equal");
+const result = document.querySelectorAll(".equal");
 const clearInput = document.querySelector(".clear");
 // Change the input depending on button clicked
 buttons.forEach((element) => {
@@ -21,8 +21,8 @@ const divide = (a, b) => parseFloat(a) / parseFloat(b);
 const multiply = (a, b) => parseFloat(a) * parseFloat(b);
     
 function calculateResult () {
-    if (input.innerHTML.includes("+")) {
-        const output = input.innerHTML.split("+");
+    if (input.innerHTML.includes(`+`)) {
+        const output = input.innerHTML.split(`+`);
         input.innerHTML = add((output[0]), output[1]);
     }else if (input.innerHTML.includes("-")) {
         const output = input.innerHTML.split("-");
@@ -36,5 +36,5 @@ function calculateResult () {
     }
 }
 // Calculate result and display output
-result.addEventListener("click", calculateResult);        
+result.forEach((element) => element.addEventListener("click", calculateResult));        
 clearInput.addEventListener("click", () => input.innerHTML = "Output");
