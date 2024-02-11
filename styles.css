@@ -2,17 +2,43 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;  
+    height: 100vh;
+    background-color:#e5e5e5; 
 }
 .container {
-    display: flex;
+    display: flex;  
+    
+    background-color: grey;
+    
     flex-direction: column;
-    border: 1px solid black;
-    padding: 5px;
+    padding: 45px;
+    border: 5px solid black;
+    border-radius: 8px;    
+    
+    
+    
 }
 .input {
-    align-self: flex-end;
+    background-color: greenyellow;
+    border: 1px solid black;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    
 }
+button:hover {
+    background-color: #404040;
+}
+button {
+    width: 20%;
+    margin-bottom: 10px;
+    padding: 0px;
+    color: white;
+    background-color: black;
+    border-radius: 8px;
+    
+}
+
 * {
-    font-size: large;
+    font-size: 50px;
+    font-family: 
 }
