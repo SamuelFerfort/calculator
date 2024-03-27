@@ -55,7 +55,6 @@ function calculateTest (e) {
     if (!secondOperand) {
         return;
     }
-
     let calculation;
     switch (operator) {
         case '+':
@@ -65,9 +64,6 @@ function calculateTest (e) {
             calculation = multiply(firstOperand, secondOperand);
             break;
         case '÷':
-            if (secondOperand === 0){
-                alert("Can't divide by 0");
-            }
             calculation = divide(firstOperand, secondOperand);
             break;
         case '-':
