@@ -10,10 +10,21 @@ const operators = ["+", "-", "÷", "x"];
 // Change the input depending on button clicked
 buttons.forEach((element) => {
   element.addEventListener("click", () => {
-    input.innerHTML =
-      input.innerHTML == "0" || input.innerHTML == "Error"
-        ? element.innerHTML
-        : input.innerHTML + element.innerHTML;
+    if (input.innerHTML === "0") {
+      if (!operators.includes(element.innerHTML)) {
+        // If the input is "0" and the clicked button is not an operator,
+        // replace "0" with the clicked button's value
+        if (element.innerHTML !== "=") {
+          input.innerHTML = element.innerHTML;
+        }
+      }
+    } else if (input.innerHTML === "Error" || input.innerHTML.includes(NaN)) {
+      // If the input is "Error" or includes NaN, do nothing
+      return;
+    } else {
+      // Otherwise, append the clicked button's value to the input
+      input.innerHTML += element.innerHTML;
+    }
   });
 });
 
@@ -39,25 +50,33 @@ function findOperator(inputString) {
 
 function calculateTest(e) {
   const expression = input.innerHTML;
+
   const { operator, count } = findOperator(expression);
-  if (operator == null) {
-    input.innerHTML = "Error";
+  if (!operator) {
     return;
   }
   const output = expression.split(operator);
 
   const firstOperand = output[0];
-
+  console.log(firstOperand);
   let secondOperand = output[1];
+  console.log(secondOperand);
 
   let operatorTwo = e.target.innerHTML;
   if (count > 1) {
     secondOperand = output[1].split(operators);
+    if (secondOperand == "" || firstOperand == "") {
+      input.innerHTML = input.innerHTML.slice(0, -1);
+      secondOperand == "";
+      return;
+    }
   }
 
   if (!secondOperand) {
     return;
   }
+
+  console.log(`second: ${secondOperand}`);
   let calculation;
   switch (operator) {
     case "+":
@@ -81,7 +100,8 @@ function calculateTest(e) {
   }
 }
 // Calculate result and display output
-result.forEach((element) =>
-  element.addEventListener("click", (e) => calculateTest(e))
-);
+result.forEach((element) => {
+  element.addEventListener("click", (e) => calculateTest(e));
+});
+
 clearInput.addEventListener("click", () => (input.innerHTML = "0"));
