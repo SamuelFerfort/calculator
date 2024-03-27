@@ -11,7 +11,7 @@ const operators = ["+", "-", "÷", "x"];
 buttons.forEach((element) => {
   element.addEventListener("click", () => {
     input.innerHTML =
-      input.innerHTML == "0"
+      input.innerHTML == "0" || input.innerHTML == "Error"
         ? element.innerHTML
         : input.innerHTML + element.innerHTML;
   });
@@ -40,18 +40,21 @@ function findOperator(inputString) {
 function calculateTest(e) {
   const expression = input.innerHTML;
   const { operator, count } = findOperator(expression);
-
+  if (operator == null) {
+    input.innerHTML = "Error";
+    return;
+  }
   const output = expression.split(operator);
-  console.table(output);
+
   const firstOperand = output[0];
-  console.log(firstOperand);
+
   let secondOperand = output[1];
-  console.log(secondOperand);
+
   let operatorTwo = e.target.innerHTML;
   if (count > 1) {
     secondOperand = output[1].split(operators);
   }
-  console.log(secondOperand);
+
   if (!secondOperand) {
     return;
   }
@@ -70,7 +73,7 @@ function calculateTest(e) {
       calculation = subtract(firstOperand, secondOperand);
       break;
   }
-  console.log(operatorTwo);
+
   if (count > 1) {
     input.innerHTML = calculation + operatorTwo;
   } else {
