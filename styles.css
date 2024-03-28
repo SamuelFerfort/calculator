@@ -21,7 +21,6 @@ body {
   flex-direction: column;
   width: 360px;
   border-radius: 10px;
-  padding: 20px;
 }
 .input {
   background-color: rgba(0, 0, 0, 0.75);
@@ -31,7 +30,6 @@ body {
   display: flex;
   align-items: center;
   font-size: 40px;
-  overflow: hidden;
 }
 button:hover {
   background-color: rgba(255, 255, 255, 0.9);
