@@ -10,19 +10,24 @@ const operators = ["+", "-", "÷", "x"];
 // Change the input depending on button clicked
 buttons.forEach((element) => {
   element.addEventListener("click", () => {
-    if (input.innerHTML === "0") {
-      if (!operators.includes(element.innerHTML)) {
-        // If the input is "0" and the clicked button is not an operator,
-        // replace "0" with the clicked button's value
-        if (element.innerHTML !== "=") {
-          input.innerHTML = element.innerHTML;
-        }
+    if (
+      input.innerHTML === "0" ||
+      input.innerHTML === "Error" ||
+      input.innerHTML.includes(NaN)
+    ) {
+      if (!operators.includes(element.innerHTML) && element.innerHTML != "=") {
+        // If the input is "0"  or NaN or Error and the clicked button is not an operator,
+        // replace  with the clicked button's value
+        input.innerHTML = element.innerHTML;
+        return;
       }
-    } else if (input.innerHTML === "Error" || input.innerHTML.includes(NaN)) {
-      // If the input is "Error" or includes NaN, do nothing
-      return;
-    } else {
+    }
+
+    if (input.innerHTML == "0" && operators.includes(element.innerHTML)) {
       // Otherwise, append the clicked button's value to the input
+      input.innerHTML += element.innerHTML;
+    } else if (element.innerHTML != "=") {
+      
       input.innerHTML += element.innerHTML;
     }
   });
