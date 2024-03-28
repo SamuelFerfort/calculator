@@ -53,3 +53,22 @@ button {
 .op:hover {
   background-color: #ffb74d; /* Lighter gray background on hover */
 }
+@keyframes flash {
+  0% { background-color: rgba(255, 255, 255, 0.5); }
+  50% { background-color: rgba(255, 255, 255, 0.9); }
+  100% { background-color: rgba(255, 255, 255, 0.5); }
+}
+
+@keyframes opFlash {
+  0% { background-color: #ffb74d; }
+  50% { background-color: #ff9800; }
+  100% { background-color: #ffb74d; }
+}
+
+button:active {
+  animation: flash 0.5s linear;
+}
+
+.op:active {
+  animation: flash 0.5s linear, opFlash 0.5s linear;
+}
